@@ -14,7 +14,7 @@ Our artifacts facilitates:
 - Creating App Store-like privacy labels based on privacy policies.
 - Evaluating if a privacy policy is similar to a popular privacy policy template.
 
-The fine-tuned models and datasets are stored as large files on HuggingFace. we provide code to download these files within the notebooks.
+The fine-tuned models and datasets are stored as large files on HuggingFace. We provide code to download these files within the notebooks in this GitHub repository.
 
 - [Dataset](https://huggingface.co/datasets/masoodali/apple-app-store-labels-policies)
 - [Model/PrivBERT-Main](https://huggingface.co/masoodali/PrivBERT-Main)
