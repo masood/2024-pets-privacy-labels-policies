@@ -8,13 +8,52 @@ This artifact contains all of the code and dataset used in our paper to collect 
 Our artifacts facilitates:
 
 - Gathering metadata, including privacy labels, for apps on the Apple App Store.
-- Fine-tuning a language model, PrivBERT, to identify practices declared within privacy policy text.
 - Crawling and parsing the text contents of privacy policies.
 - Classifying privacy policies to identify declared data collection practices.
 - Creating App Store-like privacy labels based on privacy policies.
 - Evaluating if a privacy policy is similar to a popular privacy policy template.
 
-The fine-tuned models and datasets are stored as large files on HuggingFace. We provide code to download these files within the notebooks in this GitHub repository.
+### Security/Privacy Issues and Ethical Concerns
+
+While the artifact demos themselves do not crawl the entire Apple App Store, the crawl that we performed for the paper used exponential backoffs while sending requests to the App Store’s APIs.  
+
+## Basic Requirements
+
+### Hardware Requirements
+
+The classification models require the use of a GPU. We provide Google Colab links for code that requires GPU access.
+
+To run a notebook using a GPU in Google Colab, from the menu options at the top of the tab, choose `Runtime > Change runtime type`. In the resulting pop-up, choose `T4 GPU`  as the Hardware accelerator and click Save.
+
+### Software Requirements
+
+We primarily performed our evaluation on an Ubuntu 22.04 VM. Our code depends on various Python libraries which we import using pip. The notebooks in our artifact include commands within cells to download and import required libraries.
+
+### Estimated Time and Storage Consumption
+
+Our overall crawl, classification, and analysis can be quite lengthy to fully replicate, but the demos describe use cases which facilitate a quick evaluation.
+
+#### Quick Evaluation:
+- Time: Around 45m (quick evaluation)
+- Storage: Around 4GB of storage considering models and dataset CSV files (quick evaluation).
+
+#### Complete Evaluation:
+
+Re-generating the entire dataset would require multiple crawls and large-scale classification.
+
+- Time: (4-6 weeks)
+    - Crawling the metadata for all (around 1.2M) apps on the Apple App Store while respecting Apple’s backoff for hits to its API: 1-2 weeks
+    - Next, Crawling each privacy policy mentioned within the App Store, cleaning the response, classifying each text segment, and generating an equivalent privacy label for the policy: 2-3 weeks
+    - Comparing collected policies against templates: 1 week
+- Storage: (100GB)
+    - Depending on how you save and discard text and HTML files, and if you (one-hot) encode results immediately after classifying text, the total space can be reduced to around 60GB.
+
+## Environment
+
+### Accessibility
+
+Our artifact is accessible through this GitHub repository: https://github.com/masood/2024-pets-privacy-labels-policies.
+The fine-tuned models and datasets are stored as large files on HuggingFace. we provide code to download these files within the notebooks.
 
 - [Dataset](https://huggingface.co/datasets/masoodali/apple-app-store-labels-policies)
 - [Model/PrivBERT-Main](https://huggingface.co/masoodali/PrivBERT-Main)
@@ -29,6 +68,7 @@ The fine-tuned models and datasets are stored as large files on HuggingFace. We 
 ### Set up the environment
 Click on the `Open in Colab` button at the top of each `ipynb` file to run the code within Google Colab.
 
+## Artifact Evaluation
 
 ### Main Results and Claims / Experiments
 
@@ -63,6 +103,7 @@ Our artifact provides a demo of gathering the text of a privacy policy, converti
 Our paper discusses the collection of (i) App Store Metadata, (ii) Collection of Privacy Policies, (iii) Classification of Policies, (iv) Creation of Policy-based Privacy Labels, and (v) Comparison of App Store Labels and Privacy Policy-based Labels.
 We provide the data associated with our crawl and classifier results from January 2024, and we provide demo code for accessing and parsing the data that we share. (`dataset.ipynb`)
 
+
 ### Experiments
 
 #### Experiment 1: App Store Crawl
@@ -94,4 +135,4 @@ We estimate evaluating the demo notebook to take around 10 minutes.
 
 We provide a demo notebook (`dataset.ipynb`) that demonstrates accessing and downloading the App Store and Privacy Policy data (from crawls in Jan 2024).
 The notebook downloads the data from HuggingFace.
-We show example code to parse the downloaded data and to generate comparison figures (e.g., Privacy Types [Fig. 4], Purposes [Fig. 5]) similar to those we include in our paper.
+We show example code to parse the downloaded data and to generate comparison figures (e.g., Privacy Types, Purposes) similar to those we include in our paper.

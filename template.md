@@ -38,8 +38,20 @@ We primarily performed our evaluation on an Ubuntu 22.04 VM. Our code depends on
 
 Our overall crawl, classification, and analysis can be quite lengthy to fully replicate, but the demos describe use cases which facilitate a quick evaluation.
 
-- Time: Around 45m (quick evaluation), 4-6 weeks (complete evaluation)
-- Storage: Around 4GB of storage considering models and dataset CSV files (quick evaluation). 100GB of storage for a complete crawl of the App Store Metadata, Privacy Policies (Text and HTML), Classification Models and Results, and Template Detection.
+#### Quick Evaluation:
+- Time: Around 45m (quick evaluation)
+- Storage: Around 4GB of storage considering models and dataset CSV files (quick evaluation).
+
+#### Complete Evaluation:
+
+Re-generating the entire dataset would require multiple crawls and large-scale classification.
+
+- Time: (4-6 weeks)
+    - Crawling the metadata for all (around 1.2M) apps on the Apple App Store while respecting Apple’s backoff for hits to its API: 1-2 weeks
+    - Next, Crawling each privacy policy mentioned within the App Store, cleaning the response, classifying each text segment, and generating an equivalent privacy label for the policy: 2-3 weeks
+    - Comparing collected policies against templates: 1 week
+- Storage: (100GB)
+    - Depending on how you save and discard text and HTML files, and if you (one-hot) encode results immediately after classifying text, the total space can be reduced to around 60GB.
 
 ## Environment
 
