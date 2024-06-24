@@ -39,8 +39,8 @@ We primarily performed our evaluation on an Ubuntu 22.04 VM. Our code depends on
 Our overall crawl, classification, and analysis can be quite lengthy to fully replicate, but the demos describe use cases which facilitate a quick evaluation.
 
 #### Quick Evaluation:
-- Time: Around 45m (quick evaluation)
-- Storage: Around 4GB of storage considering models and dataset CSV files (quick evaluation).
+- Time: Around 45m
+- Storage: Around 4GB of storage considering models and dataset CSV files
 
 #### Complete Evaluation:
 
